@@ -1,1 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>NEO8 Panel</title>
+</head>
+<body style="text-align:center; font-family:sans-serif;">
 
+<h2>NEO8 LOGIN 🔥</h2>
+
+<input id="email" placeholder="email"><br><br>
+<input id="password" type="password" placeholder="password"><br><br>
+
+<button onclick="login()">Login</button>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+<script>
+const supabaseClient = supabase.createClient(
+"sb_publishable_6kNvCmw63rCu1BXJnWfgMQ_73zLyw5i",
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpsaHR6c2p5em5oeGJwbXRkZWF3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU4Mzc4NTMsImV4cCI6MjA5MTQxMzg1M30.lfjCYJcDXJv0WFLyn9V418m8I96FtEJJ0Kn5a3q9yyY"
+);
+
+async function login() {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  const { error } = await supabaseClient.auth.signInWithPassword({
+    email,
+    password
+  });
+
+  if (!error) {
+    alert("Login Success 🔥");
+  } else {
+    alert("Error ❌");
+  }
+}
+</script>
+
+</body>
+</html>
