@@ -1,1 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>NEO8 Dashboard</title>
 
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #0f172a;
+  color: white;
+}
+
+.sidebar {
+  width: 220px;
+  height: 100vh;
+  background: #020617;
+  position: fixed;
+  padding-top: 20px;
+}
+
+.sidebar a {
+  display: block;
+  color: #94a3b8;
+  padding: 15px;
+  text-decoration: none;
+}
+
+.sidebar a:hover {
+  background: #1e293b;
+  color: white;
+}
+
+.main {
+  margin-left: 220px;
+  padding: 20px;
+}
+
+.card {
+  background: #1e293b;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 10px;
+  display: inline-block;
+  width: 200px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.lang-btn {
+  cursor: pointer;
+  padding: 5px 10px;
+  background: #2563eb;
+  border-radius: 5px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+  <a href="#">Dashboard</a>
+  <a href="#">Users</a>
+  <a href="#">Credits</a>
+  <a href="#">Devices</a>
+  <a href="#">Logs</a>
+  <a href="#">Support</a>
+</div>
+
+<div class="main">
+
+<div class="topbar">
+  <h2 id="title">Dashboard</h2>
+  <div>
+    <span class="lang-btn" onclick="setLang('en')">EN</span>
+    <span class="lang-btn" onclick="setLang('ar')">AR</span>
+  </div>
+</div>
+
+<div class="card">Users: 10</div>
+<div class="card">Active: 5</div>
+<div class="card">Credits: 100</div>
+
+</div>
+
+<script>
+function setLang(lang) {
+  if (lang === "ar") {
+    document.getElementById("title").innerText = "لوحة التحكم";
+    document.body.dir = "rtl";
+  } else {
+    document.getElementById("title").innerText = "Dashboard";
+    document.body.dir = "ltr";
+  }
+}
+</script>
+
+</body>
+</html>
