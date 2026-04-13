@@ -86,7 +86,12 @@ body {
 <div class="card">Users: 10</div>
 <div class="card">Active: 5</div>
 <div class="card">Credits: 100</div>
+  <h3>Users</h3>
 
+<input id="username" placeholder="Username">
+<button onclick="addUser()">Add User</button>
+
+<ul id="usersList"></ul>
 </div>
 
 <script>
@@ -100,6 +105,41 @@ function setLang(lang) {
   }
 }
 </script>
+const supabaseClient = supabase.createClient(
+"PUT_YOUR_URL",
+"PUT_YOUR_KEY"
+);
+  async function loadUsers() {
+  const { data, error } = await supabaseClient
+    .from('users')
+    .select('*');
 
+  const list = document.getElementById("usersList");
+  list.innerHTML = "";
+
+  data.forEach(user => {
+    const li = document.createElement("li");
+    li.innerHTML = user.username + 
+      ' <button onclick="deleteUser(' + user.id + ')">❌</button>';
+    list.appendChild(li);
+  });
+}
+
+async function addUser() {
+  const username = document.getElementById("username").value;
+
+  await supabaseClient.from('users').insert([
+    { username: username }
+  ]);
+
+  loadUsers();
+}
+
+async function deleteUser(id) {
+  await supabaseClient.from('users').delete().eq('id', id);
+  loadUsers();
+}
+
+loadUsers();
 </body>
 </html>
